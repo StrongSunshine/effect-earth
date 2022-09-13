@@ -1,0 +1,34 @@
+{
+  "files.eol": "\n",
+
+  "editor.trimAutoWhitespace": true,
+  "files.trimTrailingWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": true,
+
+  "editor.wordWrapColumn": 80,
+  "editor.wordWrap": "wordWrapColumn",
+
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+
+  "files.insertFinalNewline": true,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "scss.lint.unknownAtRules": "ignore",
+
+  "prettier.enable": true,
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.trailingComma": "none",
+  "prettier.bracketSpacing": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.vueIndentScriptAndStyle": false,
+  "prettier.endOfLine": "lf",
+  "prettier.printWidth": 80,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

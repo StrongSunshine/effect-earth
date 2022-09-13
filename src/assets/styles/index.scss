@@ -1,0 +1,10 @@
+.sidePanel {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.32) 0%,
+    rgba(255, 255, 255, 0.44) 71%,
+    rgba(255, 255, 255, 0.63) 100%
+  );
+
+  @apply wrap-full backdrop-blur-lg;
+}
