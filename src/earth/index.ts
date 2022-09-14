@@ -6,8 +6,9 @@ import { createEarth, type EarthInterface } from './earth'
 import { createStar, type StarInterface } from './star'
 import { createGlow, type GlowInterface } from './glow'
 import { createAtmosphere } from './atmosphere'
+import { createSatellite, type SatelliteInterface } from './satellite'
 
-export type Config = EarthInterface & StarInterface & GlowInterface
+export type Config = EarthInterface & StarInterface & GlowInterface & SatelliteInterface
 
 export async function earth(container: HTMLDivElement, arg: Config) {
   const config = {
@@ -16,7 +17,11 @@ export async function earth(container: HTMLDivElement, arg: Config) {
     starRadius: 50000000,
     starCount: 5000,
     starSize: 100000,
-    glowOpacity: 0.7
+    glowOpacity: 0.7,
+    satelliteCount: 3,
+    satelliteSize: 90000,
+    trackSegments: 48 * 3,
+    trackRadius: 20000
   }
 
   let key: keyof Config
@@ -66,6 +71,16 @@ export async function earth(container: HTMLDivElement, arg: Config) {
   /* 创建大气效果 */
   const atmosphere = await createAtmosphere(config.earthRadius)
   earthGroup.add(atmosphere)
+
+  /* 创建卫星 */
+  const satellites = await createSatellite({
+    earthRadius: config.earthRadius,
+    satelliteCount: config.satelliteCount,
+    satelliteSize: config.satelliteSize,
+    trackSegments: config.trackSegments,
+    trackRadius: config.trackRadius,
+  })
+  earthGroup.add(...satellites)
 
   scene.add(group)
 

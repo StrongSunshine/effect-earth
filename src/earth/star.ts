@@ -41,7 +41,7 @@ export async function createStar(config: StarInterface) {
   });
 
   const aroundPoints = new Points(around, aroundMaterial);
-  aroundPoints.name = "星空";
+  aroundPoints.name = "star";
   aroundPoints.position.set(0, 0, 0)
 
   return aroundPoints

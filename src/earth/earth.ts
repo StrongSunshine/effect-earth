@@ -58,14 +58,14 @@ export async function createEarth(config: EarthInterface) {
 
   const earth_border = new SphereGeometry(
     config.earthRadius * 1.05,
-    60,
-    60
+    30,
+    30
   );
 
   const pointMaterial = new PointsMaterial({
     color: 0x81ffff,
     transparent: true,
-    opacity: 0.1,
+    opacity: 0.2,
     vertexColors: false,
     // 定义材料是否使用顶点颜色，默认false ---如果该选项设置为true，则color属性失效
     size: 1,

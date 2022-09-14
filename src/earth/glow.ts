@@ -27,6 +27,7 @@ export async function createGlow(config: GlowInterface) {
   const sprite = new Sprite(spriteMaterial);
   // 适当缩放精灵
   sprite.scale.set(R * 3, R * 3, 1);
+  sprite.name = 'glow'
 
   return sprite
 }
