@@ -5,6 +5,7 @@ import { init } from './init'
 import { createEarth, type EarthInterface } from './earth'
 import { createStar, type StarInterface } from './star'
 import { createGlow, type GlowInterface } from './glow'
+import { createAtmosphere } from './atmosphere'
 
 export type Config = EarthInterface & StarInterface & GlowInterface
 
@@ -55,12 +56,16 @@ export async function earth(container: HTMLDivElement, arg: Config) {
   })
   earthGroup.add(star)
 
-  /* 创建大气层 */
+  /* 创建发光效果 */
   const glow = await createGlow({
     earthRadius: config.earthRadius,
     glowOpacity: config.glowOpacity
   })
   earthGroup.add(glow)
+
+  /* 创建大气效果 */
+  const atmosphere = await createAtmosphere(config.earthRadius)
+  earthGroup.add(atmosphere)
 
   scene.add(group)
 

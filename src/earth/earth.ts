@@ -9,8 +9,8 @@ import {
 
 import { loadTexture } from './textureLoader'
 import EarthTexture from '@/assets/earth/earth.jpg'
-import earthVertex from './shaders/vertex'
-import earthFragment from './shaders/fragment'
+import earthVertex from './shaders/scanVertex'
+import earthFragment from './shaders/scanFragment'
 
 export interface EarthInterface {
   /* 地球半径 */
