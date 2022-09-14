@@ -14,18 +14,12 @@ import earthFragment from './shaders/fragment'
 
 export interface EarthInterface {
   /* 地球半径 */
-  radius?: number
+  earthRadius: number
   /* 扫光时间 */
-  scanTime?:number
+  scanTime: number
 }
 
-export async function createEarth(arg?: EarthInterface) {
-  const config = {
-    radius: 6371004,
-    scanTime: 100,
-    ...arg
-  }
-
+export async function createEarth(config: EarthInterface) {
   const earthTexture = await loadTexture(EarthTexture)
 
   const uniforms = {
@@ -57,13 +51,13 @@ export async function createEarth(arg?: EarthInterface) {
   }
 
   const earth_geometry = new SphereGeometry(
-    config.radius,
+    config.earthRadius,
     50,
     50
   );
 
   const earth_border = new SphereGeometry(
-    config.radius * 1.05,
+    config.earthRadius * 1.05,
     60,
     60
   );

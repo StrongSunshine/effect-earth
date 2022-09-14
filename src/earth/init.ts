@@ -20,7 +20,7 @@ export function init(container: HTMLDivElement) {
   const scene = new Scene()
   scene.background = new Color('#020824')
 
-  const camera = new PerspectiveCamera(45, width / height, 1, 50000000)
+  const camera = new PerspectiveCamera(45, width / height, 1, 50010000)
   camera.position.set(7316678, 14398627, 21324875)
 
   const renderer = new WebGLRenderer({
@@ -31,6 +31,7 @@ export function init(container: HTMLDivElement) {
 
   const control = new OrbitControls(camera, renderer.domElement)
   control.enableZoom = true
+  control.maxDistance = 50000000
 
   window.addEventListener('resize', () => {
     if (!container.parentElement) return

@@ -2,9 +2,28 @@
 import { Group } from 'three'
 
 import { init } from './init'
-import { createEarth } from './earth'
+import { createEarth, type EarthInterface } from './earth'
+import { createStar, type StarInterface } from './star'
 
-export async function earth(container: HTMLDivElement) {
+export type Config = EarthInterface & StarInterface
+
+export async function earth(container: HTMLDivElement, arg: Config) {
+  const config = {
+    earthRadius: 6371004,
+    scanTime: 100,
+    starRadius: 50000000,
+    starCount: 5000,
+    starSize: 100000,
+  }
+
+  let key: keyof Config
+  for (key in arg) {
+    if (arg[key] !== null || arg[key] !== undefined) {
+      config[key] = arg[key]
+    }
+  }
+
+  /* 初始化场景 */
   const {
     scene, camera, renderer, control
   } = init(container)
@@ -19,8 +38,20 @@ export async function earth(container: HTMLDivElement) {
   group.add(earthGroup)
   earthGroup.name = "EarthGroup";
 
-  const [earth, points] = await createEarth()
+  /* 创建地球 */
+  const [earth, points] = await createEarth({
+    earthRadius: config.earthRadius,
+    scanTime: config.scanTime
+  })
   earthGroup.add(earth, points)
+
+  /* 创建星星 */
+  const star = await createStar({
+    starRadius: config.starRadius,
+    starCount: config.starCount,
+    starSize: config.starSize
+  })
+  earthGroup.add(star)
 
   scene.add(group)
 
