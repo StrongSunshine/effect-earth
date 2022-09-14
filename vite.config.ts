@@ -12,18 +12,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 // 组件自动引入
 import Components from 'unplugin-vue-components/vite'
 
-/* element-ui
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
-Components({
-	resolvers: [ElementPlusResolver()],
-	dts: true,
-}),
-*/
-
-// $ref、$computed
-// 添加全局定义: /// <reference types="vue/macros-global" />
-
 export default ({ mode }: {
 	mode: string
 	command: string

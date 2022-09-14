@@ -1,22 +1,26 @@
 <!--
  * @Author: strong sunshine
  * @LastEditors: strong sunshine
- * @LastEditTime: 2022-07-08 15:50:21
+ * @LastEditTime: 2022-09-13 15:23:57
  * @Description: Description
 -->
 <template>
-  <div id="div3d"></div>
-  <div w-full h-full absolute inset-0 pointer-events-none v-if="loaded">
-    <Entry />
+  <div w-full h-full absolute inset-0 ref="div">
+
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useAppSore } from '@/store'
-import useTjs from '@/scripts/useTjs'
-import Entry from './Entry.vue'
+import { earth } from '@/earth'
+const div = ref<HTMLDivElement>()
 
-useTjs()
-
-const { loaded } = storeToRefs(useAppSore())
+onMounted(() => {
+  const container = unref(div)
+  container && earth(container)
+})
 </script>
+
+<style>
+#div3d {
+}
+</style>

@@ -3,7 +3,6 @@
 
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
   const component: DefineComponent<{}, {}, any>
   export default component
 }
@@ -18,11 +17,10 @@ declare type StringToUnion<S extends string, U extends string = never> =
   StringToUnion<L, H | U> :
   U
 
-declare type Nullable<T> = T | null
-
 /* vite.config.js 全局变量 */
 declare const __DEV__: boolean
 
+/* 用户全局变量 */
 declare const uino: Uino
 
 interface Config {

@@ -5,7 +5,7 @@
   "files.trimTrailingWhitespace": true,
   "diffEditor.ignoreTrimWhitespace": true,
 
-  "editor.wordWrapColumn": 80,
+  "editor.wordWrapColumn": 120,
   "editor.wordWrap": "wordWrapColumn",
 
   "editor.tabSize": 2,
@@ -27,7 +27,7 @@
   "prettier.arrowParens": "avoid",
   "prettier.vueIndentScriptAndStyle": false,
   "prettier.endOfLine": "lf",
-  "prettier.printWidth": 80,
+  "prettier.printWidth": 120,
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
