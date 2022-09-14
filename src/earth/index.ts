@@ -4,8 +4,9 @@ import { Group } from 'three'
 import { init } from './init'
 import { createEarth, type EarthInterface } from './earth'
 import { createStar, type StarInterface } from './star'
+import { createGlow, type GlowInterface } from './glow'
 
-export type Config = EarthInterface & StarInterface
+export type Config = EarthInterface & StarInterface & GlowInterface
 
 export async function earth(container: HTMLDivElement, arg: Config) {
   const config = {
@@ -14,6 +15,7 @@ export async function earth(container: HTMLDivElement, arg: Config) {
     starRadius: 50000000,
     starCount: 5000,
     starSize: 100000,
+    glowOpacity: 0.7
   }
 
   let key: keyof Config
@@ -52,6 +54,13 @@ export async function earth(container: HTMLDivElement, arg: Config) {
     starSize: config.starSize
   })
   earthGroup.add(star)
+
+  /* 创建大气层 */
+  const glow = await createGlow({
+    earthRadius: config.earthRadius,
+    glowOpacity: config.glowOpacity
+  })
+  earthGroup.add(glow)
 
   scene.add(group)
 
