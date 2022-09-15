@@ -14,6 +14,7 @@ export interface StarInterface {
 
 export async function createStar(config: StarInterface) {
   const vertices = []
+  const colors = []
   const starTexture = await loadTexture(StarTexture)
 
   /* 随机500星星 */
@@ -23,12 +24,13 @@ export async function createStar(config: StarInterface) {
     vertex.y = config.starRadius * 3 * Math.random() - config.starRadius * 1.5;
     vertex.z = config.starRadius * 3 * Math.random() - config.starRadius * 1.5;
     vertices.push(vertex.x, vertex.y, vertex.z);
+    colors.push(1, 1, 1)
   }
 
   // 生成几合体
   const around = new BufferGeometry()
   around.setAttribute("position", new BufferAttribute(new Float32Array(vertices), 3));
-  around.setAttribute("color", new BufferAttribute(new Float32Array(config.starCount), 3));
+  around.setAttribute("color", new BufferAttribute(new Float32Array(colors), 3));
 
   /* 顶点材质 */
   const aroundMaterial = new PointsMaterial({

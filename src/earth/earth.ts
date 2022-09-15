@@ -28,7 +28,7 @@ export async function createEarth(config: EarthInterface) {
     },
     scale: {
       type: "f",
-      value: -1.0,
+      value: -0.5,
     },
     bias: {
       type: "f",
@@ -36,14 +36,11 @@ export async function createEarth(config: EarthInterface) {
     },
     power: {
       type: "f",
-      value: 3.3,
+      value: 5,
     },
     time: {
       type: "f",
       value: config.scanTime,
-    },
-    isHover: {
-      value: false,
     },
     map: {
       value: earthTexture,
@@ -83,6 +80,17 @@ export async function createEarth(config: EarthInterface) {
 
   const earth = new Mesh(earth_geometry, earth_material);
   earth.name = "earth";
+
+  function scan() {
+    /* 扫光 */
+    uniforms.time.value = uniforms.time.value < -config.scanTime
+      ? config.scanTime
+      : uniforms.time.value - 10;
+
+    requestAnimationFrame(scan)
+  }
+
+  scan()
 
   return [earth, points]
 }

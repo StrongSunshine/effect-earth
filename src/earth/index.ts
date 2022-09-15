@@ -13,15 +13,15 @@ export type Config = EarthInterface & StarInterface & GlowInterface & SatelliteI
 export async function earth(container: HTMLDivElement, arg: Config) {
   const config = {
     earthRadius: 6371004,
-    scanTime: 100,
-    starRadius: 50000000,
-    starCount: 5000,
-    starSize: 100000,
+    scanTime: 10000,
+    starRadius: 6371004 * 2,
+    starCount: 2000,
+    starSize: 6371004 / 100,
     glowOpacity: 0.7,
     satelliteCount: 3,
-    satelliteSize: 90000,
+    satelliteSize: 6371004 / 50,
     trackSegments: 48 * 3,
-    trackRadius: 20000
+    trackRadius: 6371004 / 1000
   }
 
   let key: keyof Config
@@ -36,15 +36,11 @@ export async function earth(container: HTMLDivElement, arg: Config) {
     scene, camera, renderer, control
   } = init(container)
 
-  /* 根节点 */
-  const group = new Group()
-  group.name = "group";
-  group.position.set(0, 0, 0)
-
-  /* 地球节点 */
+  /* root节点 */
   const earthGroup = new Group()
-  group.add(earthGroup)
+  earthGroup.position.set(0, 0, 0)
   earthGroup.name = "EarthGroup";
+  scene.add(earthGroup)
 
   /* 创建地球 */
   const [earth, points] = await createEarth({
@@ -82,10 +78,15 @@ export async function earth(container: HTMLDivElement, arg: Config) {
   })
   earthGroup.add(...satellites)
 
-  scene.add(group)
-
   const render = () => {
     requestAnimationFrame(render)
+    /* 地球公转 */
+    earthGroup.rotateY(-0.001);
+    /* 卫星旋转 */
+    satellites.forEach((s) => {
+      s.rotateY(Math.random() * 0.01);
+    });
+
     renderer.render(scene, camera)
     control.update()
   }

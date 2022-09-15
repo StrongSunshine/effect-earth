@@ -31,6 +31,8 @@ export function init(container: HTMLDivElement) {
 
   const control = new OrbitControls(camera, renderer.domElement)
   control.enableZoom = true
+  control.enableDamping = true
+  control.dampingFactor = 0.05
   control.maxDistance = 50000000
 
   window.addEventListener('resize', () => {

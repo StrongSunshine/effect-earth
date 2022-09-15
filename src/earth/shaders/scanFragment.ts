@@ -13,12 +13,12 @@ export default [
   'varying vec2 vUv;',
   'void main(void){',
   ' float a = pow(bias + scale * abs(dot(vNormal, vPositionNormal)), power);',
-  ' if(vp.y > time && vp.y < time + 20.0) {',
-  '  float t =  smoothstep(0.0, 0.8, (1.0 - abs(0.5 - (vp.y - time) / 20.0)) / 3.0);',
+  ' if(vp.y > time && vp.y < time + 2000.0) {',
+  '  float t = smoothstep(0.0, 0.8, (1.0 - abs(0.5 - (vp.y - time) / 20.0)) / 3.0);',
   '  gl_FragColor = mix(gl_FragColor, vec4(glowColor, 1.0), t * t );',
   ' }',
   ' gl_FragColor = mix(gl_FragColor, vec4( glowColor, 1.0 ), a);',
   ' float b = 0.8;',
-  ' gl_FragColor = gl_FragColor + texture2D( map, vUv );',
+  ' gl_FragColor = gl_FragColor + texture2D(map, vUv);',
   '}'
 ]
